@@ -37,12 +37,11 @@
 
 
 # def middleNode(linkedList):
-#     slow = fast = linkedList
-
-#     while fast is not None and fast.next is not None:
-#         slow = slow.next
-#         fast = fast.next.next
-#     return slow
+#     slowNode = fastNode = linkedList
+#     while fastNode is not None and fastNode.next is not None:
+#         slowNode = slowNode.next
+#         fastNode = fastNode.next.next
+#     return slowNode
 
 # O(n) time | O(n) space
 # def twoNumberSum(array, targetSum):
