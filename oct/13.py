@@ -42,4 +42,14 @@
 #     while fast is not None and fast.next is not None:
 #         slow = slow.next
 #         fast = fast.next.next
-#     return slow    
+#     return slow
+
+# O(n) time | O(n) space
+# def twoNumberSum(array, targetSum):
+#     nums = set()
+#     for num in array:
+#         currentNum = targetSum - num
+#         if currentNum in nums:
+#             return [currentNum , num]
+#         nums.add(num)
+#     return []    
