@@ -19,4 +19,25 @@ def removeKthNodeFromEnd(head, k):
         fastNode = fastNode.next
         slowNode = slowNode.next
     slowNode.next = slowNode.next.next
-    return head     
+    return head
+
+#O(n + m) time |O(k) space 
+
+HOME_TEAM = 1 
+def tournamentWinner(competitions, results):
+    scores = {'' : 0}
+    bestTeam = ''
+    for idx in range(len(results)):
+        result = results[idx]
+        [homeTeam , awayTeam] = competitions[idx]
+        winningTeam = homeTeam if result == HOME_TEAM else awayTeam
+        updateScores(scores, winningTeam, 3)
+        if scores[bestTeam] < scores[winningTeam]:
+            bestTeam = winningTeam
+    return bestTeam
+
+def updateScores(scores, winningTeam , point):
+    if winningTeam in scores:
+        scores[winningTeam] += point
+    else:
+        scores[winningTeam] = point   
