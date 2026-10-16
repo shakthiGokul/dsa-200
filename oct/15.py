@@ -69,3 +69,22 @@
 #         nodeOne = nodeOne.next if nodeOne is not None else linkedListTwo
 #         nodeTwo = nodeTwo.next if nodeTwo is not None else linkedListOne
 #     return nodeOne
+
+# O(n ^ 3) time | O(n) space
+def longestPalindromicSubstring(string):
+    bounds = [0 , 0]
+    for i in range(len(string)):
+        for j in range(len(string)):
+           if isPalindrome(string , i , j):
+               if bounds[1] - bounds[0] < j - i:
+                   bounds = [i , j]
+    return string[bounds[0]: bounds[1] + 1]
+
+def isPalindrome(string, i , j):
+    while i < j:
+        if string[i] != string[j]:
+            return False
+        i += 1
+        j -= 1
+    return True                 
+            
