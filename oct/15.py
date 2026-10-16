@@ -1,4 +1,4 @@
-# # This is an input class. Do not edit.
+#  This is an input class. Do not edit.
 # class LinkedList:
 #     def __init__(self, value):
 #         self.value = value
@@ -25,21 +25,39 @@
 #     return node.next
 
 # This is an input class. Do not edit.
+# class LinkedList:
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = None
+
+# # O(n + m) time | O(n) space
+# def mergingLinkedLists(linkedListOne, linkedListTwo):
+#     nodeOne = linkedListOne
+#     nodes = set()
+#     while nodeOne is not None:
+#         nodes.add(nodeOne)
+#         nodeOne = nodeOne.next
+#     nodeTwo = linkedListTwo
+#     while nodeTwo is not None:
+#         if nodeTwo in nodes:
+#             break
+#         nodeTwo = nodeTwo.next    
+#     return nodeTwo
+
+
+# This is an input class. Do not edit.
 class LinkedList:
     def __init__(self, value):
         self.value = value
         self.next = None
 
-# O(n + m) time | O(n) space
+# O(n + m) time | O(1) space 
 def mergingLinkedLists(linkedListOne, linkedListTwo):
     nodeOne = linkedListOne
-    nodes = set()
-    while nodeOne is not None:
-        nodes.add(nodeOne)
-        nodeOne = nodeOne.next
     nodeTwo = linkedListTwo
-    while nodeTwo is not None:
-        if nodeTwo in nodes:
+    while True:
+        if nodeOne == nodeTwo:
             break
-        nodeTwo = nodeTwo.next    
-    return nodeTwo
+        nodeOne = nodeOne.next if nodeOne is not None else linkedListTwo
+        nodeTwo = nodeTwo.next if nodeTwo is not None else linkedListOne
+    return nodeOne
