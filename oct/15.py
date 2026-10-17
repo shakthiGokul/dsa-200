@@ -71,20 +71,27 @@
 #     return nodeOne
 
 # O(n ^ 3) time | O(n) space
-def longestPalindromicSubstring(string):
-    bounds = [0 , 0]
-    for i in range(len(string)):
-        for j in range(len(string)):
-           if isPalindrome(string , i , j):
-               if bounds[1] - bounds[0] < j - i:
-                   bounds = [i , j]
-    return string[bounds[0]: bounds[1] + 1]
+# def longestPalindromicSubstring(string):
+#     bounds = [0 , 0]
+#     for i in range(len(string)):
+#         for j in range(len(string)):
+#            if isPalindrome(string , i , j):
+#                if bounds[1] - bounds[0] < j - i:
+#                    bounds = [i , j]
+#     return string[bounds[0]: bounds[1] + 1]
 
-def isPalindrome(string, i , j):
-    while i < j:
-        if string[i] != string[j]:
-            return False
-        i += 1
-        j -= 1
-    return True                 
-            
+def longestPalindromicSubstring(string):
+    bounds = [0 , 1]
+
+    for i in range(1,len(string)):
+        oddLength = getLongestPalindromeFrom(string , i - 1 , i + 1)
+        evenLength = getLongestPalindromeFrom(string , i - 1, i)
+        longest = max(oddLength , evenLength , key=lambda x:x[1] - x[0])
+        bounds = max(longest, bounds, key=lambda x:x[1] - x[0])
+    return string[bounds[0]: bounds[1]]          
+
+def getLongestPalindromeFrom(string , leftIdx, rightIdx):
+    while leftIdx >= 0 and rightIdx < len(string) and string[leftIdx] == string[rightIdx]:
+        leftIdx -= 1
+        rightIdx += 1
+    return [leftIdx + 1 , rightIdx]  
