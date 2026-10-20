@@ -50,4 +50,16 @@
 #     newTail.next = None
 #     if listTail is not None:
 #         listTail.next = head
-#     return newHead 
+#     return newHead
+
+def caesarCipherEncryptor(string, key):
+    newLetters = []
+    newKey = key % 26
+    for char in string:
+        asciiValue = ord(char) + newKey
+        value = getDecodedValues(asciiValue)
+        newLetters.append(chr(value))
+    return "".join(newLetters)
+
+def getDecodedValues(asciiValue):
+    return  asciiValue if asciiValue <= 122 else (96 + asciiValue) % 122  
