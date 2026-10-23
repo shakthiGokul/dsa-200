@@ -1,27 +1,38 @@
+class DoublyLinkedListNode:
+    def __init__(self, key, value):
+        self.prev = None
+        self.next = None
+        self.value = value
+        self.key = key
+
 class LRUCache:
     def __init__(self, maxSize):
         self.maxSize = maxSize or 1
+        self.cache = {}
+        self.linkedList = DoublyLinkedList()
+        self.currentSize = 0
 
     def insertKeyValuePair(self, key, value):
-        # Write your code here.
-        pass
+        newNode = DoublyLinkedListNode(key, value)
+        if self.currentSize == self.maxSize:
+            self.linkedList.removeNode()
+            self.currentSize -= 1
+        self.currentSize += 1        
+        self.linkedList.setHead(newNode)
+        self.cache[key] = newNode
 
     def getValueFromKey(self, key):
-        # Write your code here.
-        pass
+        if key in self.cache:
+            return self.cache[key]
 
     def getMostRecentKey(self):
-        # Write your code here.
-        pass
+        head = self.linkedList.head
+        return head
+   
 
-class Node:
-    def __int__(self):
-        self.prev = None
-        self.next = None
-        self.value = None
 
 class DoublyLinkedList:
-    def __int__(self):
+    def __init__(self):
         self.head = None
         self.tail = None
 
@@ -47,3 +58,13 @@ class DoublyLinkedList:
         node.prev = self.tail
         self.tail.next = node
         self.tail = node
+
+    def removeNode(self):
+        if self.tail is None:
+            return
+        if self.tail == self.head:
+            self.head = None
+            self.tail = None
+            return
+        self.tail = self.tail.prev
+        self.tail.next = None    
