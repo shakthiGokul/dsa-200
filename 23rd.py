@@ -38,13 +38,13 @@ def generateDocument(characters, document):
         return False
     frequency = {}
     for char in document:
-        if char != "":
-            if char in frequency:
-                frequency[char] = frequency.get(char, 0) + 1    
+        if char in frequency:
+            frequency[char] += 1
+        else:
+            frequency[char] = 1      
     for char in characters:
-        if char != "":
-            if char in frequency:
-                frequency[char] -= 1
-                if frequency[char] == 0:
-                    del frequency[char]               
+        if char in frequency:
+            frequency[char] -= 1
+            if frequency[char] == 0:
+                del frequency[char]               
     return not frequency          
