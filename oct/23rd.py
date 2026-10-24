@@ -33,18 +33,31 @@
 
     
 
-def generateDocument(characters, document):
-    if len(characters) < len(document):
-        return False
-    frequency = {}
-    for char in document:
-        if char in frequency:
-            frequency[char] += 1
-        else:
-            frequency[char] = 1      
-    for char in characters:
-        if char in frequency:
-            frequency[char] -= 1
-            if frequency[char] == 0:
-                del frequency[char]               
-    return not frequency          
+# def generateDocument(characters, document):
+#     if len(characters) < len(document):
+#         return False
+#     frequency = {}
+#     for char in document:
+#         if char in frequency:
+#             frequency[char] += 1
+#         else:
+#             frequency[char] = 1      
+#     for char in characters:
+#         if char in frequency:
+#             frequency[char] -= 1
+#             if frequency[char] == 0:
+#                 del frequency[char]               
+#     return not frequency          
+
+# O(n) time | O(n) space
+def bestDigits(number, numDigits):
+    stack = []
+    for num in number:
+        while numDigits > 0 and stack and num > stack[-1]:
+            numDigits -= 1
+            stack.pop()
+        stack.append(num)    
+    while numDigits > 0:
+        numDigits -= 1
+        stack.pop()
+    return "".join(stack)
