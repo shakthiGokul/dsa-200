@@ -67,4 +67,38 @@ class DoublyLinkedList:
             self.tail = None
             return
         self.tail = self.tail.prev
-        self.tail.next = None    
+        self.tail.next = None
+
+# This is the class of the input linked list.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+# O(n) time | O(n) space
+# def rearrangeLinkedList(head, k):
+#     forwardNodes = []
+#     backwardNodes = []
+#     middleNodes = []
+#     currentNode = head
+#     while currentNode is not None:
+#         if currentNode.value < k:
+#             forwardNodes.append(currentNode)
+#         elif currentNode.value > k:
+#             backwardNodes.append(currentNode)
+#         else:
+#             middleNodes.append(currentNode)       
+#         currentNode = currentNode.next
+#     node = LinkedList(-1)
+#     currentNode = node
+#     for forwardNode in forwardNodes:
+#         currentNode.next = forwardNode
+#         currentNode = currentNode.next
+#     for midNode in middleNodes:
+#         currentNode.next = midNode
+#         currentNode = currentNode.next
+#     for backwardNode in backwardNodes:
+#         currentNode.next = backwardNode
+#         currentNode = currentNode.next
+#     currentNode.next = None    
+#     return node.next       
