@@ -22,3 +22,20 @@ def isPalindrome(string):
         leftIdx += 1
         rightIdx -= 1
     return True    
+
+
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def nodeSwap(head):
+    if head is None or head.next is None:
+        return head
+    currentNode = head
+    nextNode = currentNode.next
+    currentNode.next = nodeSwap(nextNode.next)
+    nextNode.next = currentNode
+    return nextNode
