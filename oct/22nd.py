@@ -31,11 +31,28 @@ class LinkedList:
         self.next = None
 
 
-def nodeSwap(head):
-    if head is None or head.next is None:
-        return head
-    currentNode = head
-    nextNode = currentNode.next
-    currentNode.next = nodeSwap(nextNode.next)
-    nextNode.next = currentNode
-    return nextNode
+# def nodeSwap(head):
+#     if head is None or head.next is None:
+#         return head
+#     currentNode = head
+#     nextNode = currentNode.next
+#     currentNode.next = nodeSwap(nextNode.next)
+#     nextNode.next = currentNode
+#     return nextNode
+
+# def nodeSwap(head):
+#     node = LinkedList(-1)
+#     node.next = head
+#     prevNode = node
+
+#     while prevNode.next is not None and prevNode.next.next is not None:
+#         firstNode = prevNode.next
+#         secondNode = firstNode.next
+
+#         firstNode.next = secondNode.next
+#         secondNode.next = firstNode
+#         prevNode.next = secondNode
+
+#         prevNode = secondNode.next
+    
+#     return node.next    
