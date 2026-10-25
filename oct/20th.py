@@ -1,104 +1,137 @@
-class DoublyLinkedListNode:
-    def __init__(self, key, value):
-        self.prev = None
-        self.next = None
-        self.value = value
-        self.key = key
+# class DoublyLinkedListNode:
+#     def __init__(self, key, value):
+#         self.prev = None
+#         self.next = None
+#         self.value = value
+#         self.key = key
 
-class LRUCache:
-    def __init__(self, maxSize):
-        self.maxSize = maxSize or 1
-        self.cache = {}
-        self.linkedList = DoublyLinkedList()
-        self.currentSize = 0
+# class LRUCache:
+#     def __init__(self, maxSize):
+#         self.maxSize = maxSize or 1
+#         self.cache = {}
+#         self.linkedList = DoublyLinkedList()
+#         self.currentSize = 0
 
-    def insertKeyValuePair(self, key, value):
-        newNode = DoublyLinkedListNode(key, value)
-        if self.currentSize == self.maxSize:
-            self.linkedList.removeNode()
-            self.currentSize -= 1
-        self.currentSize += 1        
-        self.linkedList.setHead(newNode)
-        self.cache[key] = newNode
+#     def insertKeyValuePair(self, key, value):
+#         newNode = DoublyLinkedListNode(key, value)
+#         if self.currentSize == self.maxSize:
+#             self.linkedList.removeNode()
+#             self.currentSize -= 1
+#         self.currentSize += 1        
+#         self.linkedList.setHead(newNode)
+#         self.cache[key] = newNode
 
-    def getValueFromKey(self, key):
-        if key in self.cache:
-            return self.cache[key]
+#     def getValueFromKey(self, key):
+#         if key in self.cache:
+#             return self.cache[key]
 
-    def getMostRecentKey(self):
-        head = self.linkedList.head
-        return head
+#     def getMostRecentKey(self):
+#         head = self.linkedList.head
+#         return head
    
 
 
-class DoublyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
+# class DoublyLinkedList:
+#     def __init__(self):
+#         self.head = None
+#         self.tail = None
 
-    def setHead(self, node):
-        if self.head is None:
-            self.head = node
-            self.tail = node 
-            return 
+#     def setHead(self, node):
+#         if self.head is None:
+#             self.head = node
+#             self.tail = node 
+#             return 
        
-        if self.head == self.tail:
-            node.next = self.tail
-            self.head.prev = node
-            self.head = node
-        else:
-            node.next = self.head
-            self.head.prev = node
-            self.head = node
+#         if self.head == self.tail:
+#             node.next = self.tail
+#             self.head.prev = node
+#             self.head = node
+#         else:
+#             node.next = self.head
+#             self.head.prev = node
+#             self.head = node
 
-    def setTail(self, node):
-        if self.tail is None:
-            self.setHead(node)
-            return
-        node.prev = self.tail
-        self.tail.next = node
-        self.tail = node
+#     def setTail(self, node):
+#         if self.tail is None:
+#             self.setHead(node)
+#             return
+#         node.prev = self.tail
+#         self.tail.next = node
+#         self.tail = node
 
-    def removeNode(self):
-        if self.tail is None:
-            return
-        if self.tail == self.head:
-            self.head = None
-            self.tail = None
-            return
-        self.tail = self.tail.prev
-        self.tail.next = None
+#     def removeNode(self):
+#         if self.tail is None:
+#             return
+#         if self.tail == self.head:
+#             self.head = None
+#             self.tail = None
+#             return
+#         self.tail = self.tail.prev
+#         self.tail.next = None
 
-# This is the class of the input linked list.
-class LinkedList:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+# # This is the class of the input linked list.
+# class LinkedList:
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = None
 
-# O(n) time | O(n) space
+# # O(n) time | O(n) space
+# # def rearrangeLinkedList(head, k):
+# #     forwardNodes = []
+# #     backwardNodes = []
+# #     middleNodes = []
+# #     currentNode = head
+# #     while currentNode is not None:
+# #         if currentNode.value < k:
+# #             forwardNodes.append(currentNode)
+# #         elif currentNode.value > k:
+# #             backwardNodes.append(currentNode)
+# #         else:
+# #             middleNodes.append(currentNode)       
+# #         currentNode = currentNode.next
+# #     node = LinkedList(-1)
+# #     currentNode = node
+# #     for forwardNode in forwardNodes:
+# #         currentNode.next = forwardNode
+# #         currentNode = currentNode.next
+# #     for midNode in middleNodes:
+# #         currentNode.next = midNode
+# #         currentNode = currentNode.next
+# #     for backwardNode in backwardNodes:
+# #         currentNode.next = backwardNode
+# #         currentNode = currentNode.next
+# #     currentNode.next = None    
+# #     return node.next       
+
+# class LinkedList:
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = None
+
+
 # def rearrangeLinkedList(head, k):
-#     forwardNodes = []
-#     backwardNodes = []
-#     middleNodes = []
+#     forwardNodes = LinkedList(-1)
+#     backwardNodes = LinkedList(-1)
+#     middleNodes = LinkedList(-1)
 #     currentNode = head
+#     currentForwardNode = forwardNodes
+#     currentBackwardNodes = backwardNodes
+#     currentMiddleNodes = middleNodes
 #     while currentNode is not None:
 #         if currentNode.value < k:
-#             forwardNodes.append(currentNode)
+#             currentForwardNode.next = currentNode
+#             currentForwardNode = currentForwardNode.next
 #         elif currentNode.value > k:
-#             backwardNodes.append(currentNode)
+#             currentBackwardNodes.next = currentNode
+#             currentBackwardNodes = currentBackwardNodes.next
 #         else:
-#             middleNodes.append(currentNode)       
+#             currentMiddleNodes.next = currentNode
+#             currentMiddleNodes = currentMiddleNodes.next       
 #         currentNode = currentNode.next
-#     node = LinkedList(-1)
-#     currentNode = node
-#     for forwardNode in forwardNodes:
-#         currentNode.next = forwardNode
-#         currentNode = currentNode.next
-#     for midNode in middleNodes:
-#         currentNode.next = midNode
-#         currentNode = currentNode.next
-#     for backwardNode in backwardNodes:
-#         currentNode.next = backwardNode
-#         currentNode = currentNode.next
-#     currentNode.next = None    
-#     return node.next       
+#     currentBackwardNodes.next = None    
+#     if middleNodes.next is None:
+#         currentForwardNode.next = backwardNodes.next
+#     else:
+#         currentForwardNode.next = middleNodes.next
+#         currentMiddleNodes.next = backwardNodes.next
+#     return forwardNodes.next
