@@ -27,3 +27,19 @@ class MinMaxStack:
 
     def getMax(self):
         return self.minMaxStack[-1]['max']
+
+
+def longestSubarrayWithSum(array, targetSum):
+    longest = []
+    leftIdx = 0
+    currentSum = 0
+    for rightIdx in range(len(array)):
+        currentSum += array[rightIdx]
+        while leftIdx < rightIdx and currentSum > targetSum:
+            currentSum -= array[leftIdx]
+            leftIdx += 1
+        currentLength = rightIdx - leftIdx   
+        if currentSum == targetSum:
+            if len(longest) == 0 or  currentLength > longest[1] - longest[0]:
+                longest = [leftIdx , rightIdx]     
+    return longest                       
