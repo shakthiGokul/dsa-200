@@ -43,3 +43,21 @@ def longestSubarrayWithSum(array, targetSum):
             if len(longest) == 0 or  currentLength > longest[1] - longest[0]:
                 longest = [leftIdx , rightIdx]     
     return longest                       
+
+
+def sortStack(stack):
+    if len(stack) == 0:
+        return stack
+    top = stack.pop()
+    sortStack(stack)
+    insertTopInStack(stack , top)
+    return stack
+
+def insertTopInStack(stack , element):
+    if len(stack) <= 0 or element > stack[-1]:
+        stack.append(element)
+        return
+    top = stack.pop()
+    insertTopInStack(stack , top)
+    stack.append(top)       
+        
