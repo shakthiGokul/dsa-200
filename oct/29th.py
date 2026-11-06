@@ -15,3 +15,15 @@ def runLengthEncoding(string):
         encodedLength.append(str(count))
         encodedLength.append(currentChar)          
     return "".join(encodedLength)
+
+# O(n^2) time | O(1) space
+def largestRectangleUnderSkyline(buildings):
+    maxArea = 0
+    for i in range(len(buildings)):
+        minBuildingHeight = buildings[i]
+        for j in range(i , len(buildings)):
+            minBuildingHeight = min(minBuildingHeight , buildings[j])
+            currentArea = minBuildingHeight * ((j  - i ) + 1)
+            maxArea = max(maxArea , currentArea)
+
+    return maxArea
