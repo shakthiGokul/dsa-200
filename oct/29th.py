@@ -17,13 +17,25 @@ def runLengthEncoding(string):
     return "".join(encodedLength)
 
 # O(n^2) time | O(1) space
-def largestRectangleUnderSkyline(buildings):
-    maxArea = 0
-    for i in range(len(buildings)):
-        minBuildingHeight = buildings[i]
-        for j in range(i , len(buildings)):
-            minBuildingHeight = min(minBuildingHeight , buildings[j])
-            currentArea = minBuildingHeight * ((j  - i ) + 1)
-            maxArea = max(maxArea , currentArea)
-
-    return maxArea
+# def largestRectangleUnderSkyline(buildings):
+#     maxArea = 0
+#     for i in range(len(buildings)):
+#         minBuildingHeight = buildings[i]
+#         for j in range(i , len(buildings)):
+#             minBuildingHeight = min(minBuildingHeight , buildings[j])
+#             currentArea = minBuildingHeight * ((j  - i ) + 1)
+#             maxArea = max(maxArea , currentArea)
+#     return maxArea
+   
+# def largestRectangleUnderSkyline(buildings):
+#     maxArea = 0
+#     for idx in range(len(buildings)):
+#         leftBound , rightBound = idx , idx
+#         currentHeight = buildings[idx]
+#         while leftBound > 0 and buildings[leftBound - 1] >= currentHeight:
+#                 leftBound -= 1
+#         while rightBound < len(buildings) - 1 and buildings[rightBound + 1] >= currentHeight:
+#                 rightBound += 1
+#         currentArea = currentHeight * (rightBound - leftBound + 1)
+#         maxArea = max(currentArea , maxArea)
+#     return maxArea           
