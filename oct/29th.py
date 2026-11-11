@@ -39,3 +39,29 @@ def runLengthEncoding(string):
 #         currentArea = currentHeight * (rightBound - leftBound + 1)
 #         maxArea = max(currentArea , maxArea)
 #     return maxArea           
+
+
+
+
+
+
+
+
+
+
+
+
+
+def largestRectangleUnderSkyline(buildings):
+    maxArea = 0
+    for idx in range(len(buildings)):
+        leftBound = idx
+        rightBound = idx
+        height = buildings[idx]
+        while leftBound > 0 and buildings[leftBound - 1] >= height:
+            leftBound -= 1
+        while rightBound < len(buildings) - 1 and buildings[rightBound + 1] >= height:
+            rightBound += 1
+        currentMaxArea = height * (rightBound - leftBound + 1)
+        maxArea = max(currentMaxArea , maxArea)     
+    return maxArea
