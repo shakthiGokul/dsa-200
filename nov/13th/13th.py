@@ -59,3 +59,12 @@
 #         nodeOne = nodeOne.next if nodeOne is not None else linkedListTwo
 #         nodeTwo = nodeTwo.next if nodeTwo is not None else linkedListOne
 #     return nodeOne
+
+def isPalindrome(string):
+    leftBound , rightBound = 0 , len(string) - 1
+    while leftBound <= rightBound:
+        if string[leftBound] != string[rightBound]:
+            return False
+        leftBound += 1
+        rightBound -= 1
+    return True
