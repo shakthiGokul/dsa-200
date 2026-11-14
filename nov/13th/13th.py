@@ -33,12 +33,12 @@
 # def mergingLinkedLists(linkedListOne, linkedListTwo):
 #     nodeOne = linkedListOne
 #     nodeTwo = linkedListTwo
-#     frequency = set()
+#     visitedNodes = set()
 #     while nodeOne is not None:
-#         frequency.add(nodeOne)
+#         visitedNodes.add(nodeOne)
 #         nodeOne = nodeOne.next
 #     while nodeTwo is not None:
-#         if nodeTwo in frequency:
+#         if nodeTwo in visitedNodes:
 #             return nodeTwo
 #         nodeTwo = nodeTwo.next    
 #     return None
