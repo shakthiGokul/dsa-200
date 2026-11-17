@@ -33,3 +33,17 @@ def reverseLinkedList(head):
         prevNode = currentNode
         currentNode = nextNode
     return prevNode
+
+def sortedSquaredArray(array):
+    results = [0 for _ in array]
+    leftBound = 0
+    rightBound = len(array) - 1
+
+    for idx in reversed(range(len(results))):
+        if abs(array[leftBound]) <= abs(array[rightBound]):
+            results[idx] = array[rightBound] * array[rightBound]
+            rightBound -= 1
+        else:
+            results[idx] = array[leftBound] * array[leftBound]
+            leftBound += 1
+    return results

@@ -51,3 +51,22 @@
 //     return prevNode!
 //   }
 // }
+
+class Program {
+  func sortedSquaredArray(_ array: [Int]) -> [Int] {
+    var results:[Int] = Array(repeating:0 , count: array.count)
+    var leftBound = 0
+    var rightBound = array.count - 1
+    for idx in results.indices.reversed(){
+        if abs(array[leftBound]) <= abs(array[rightBound]) {
+            results[idx] = array[rightBound] * array[rightBound]
+            rightBound -= 1
+        }else{
+           results[idx] = array[leftBound] * array[leftBound]
+            leftBound += 1 
+        }
+    }
+    
+    return results
+  }
+}
